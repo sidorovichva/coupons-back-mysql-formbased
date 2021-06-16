@@ -49,17 +49,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors().and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/index", "/css/*", "/js/*").permitAll() //don't need authentication
+                .antMatchers("/login").permitAll() //don't need authentication
                 .antMatchers("/companies/**", "/categories/**", "/customers/**").hasRole(ClientType.ADMINISTRATOR.toString())
                 .antMatchers("/coupons/**").hasRole(ClientType.COMPANY.toString())
                 .antMatchers("/purchases/**").hasRole(ClientType.CUSTOMER.toString())
-                /*.antMatchers("/coupons/**").hasAuthority(COUPONS.toString())
-                .antMatchers(HttpMethod.DELETE, "/**").hasRole(ADMINISTRATOR.getDescription().toString())
-                .antMatchers(HttpMethod.POST, "/**").hasRole(ADMINISTRATOR.getDescription().toString())
-                .antMatchers(HttpMethod.PUT, "/**").hasRole(ADMINISTRATOR.getDescription().toString())
-                .antMatchers(HttpMethod.GET, "/**").hasRole(ADMINISTRATOR.getDescription().toString())
-                .antMatchers(HttpMethod.GET, "/**").hasAnyRole(
-                        ADMINISTRATOR.getDescription().toString(), COMPANY.getDescription().toString())*/
                 .anyRequest()
                 .authenticated()
                 .and()
