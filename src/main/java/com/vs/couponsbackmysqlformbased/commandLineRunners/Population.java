@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 
-//@Component
+@Component
 @Order(1)
 @RequiredArgsConstructor
 public class Population implements CommandLineRunner {
@@ -28,11 +28,11 @@ public class Population implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        int companies = 50;
+        int companies = 5;
         int customers = 10;
         int categories = 5;
         int coupons = 20;
-        int purchases = 100;
+        int purchases = 50;
 
         for (int i = 0; i < companies; i++) {
             String name = Entries.randomString(2).toString();
