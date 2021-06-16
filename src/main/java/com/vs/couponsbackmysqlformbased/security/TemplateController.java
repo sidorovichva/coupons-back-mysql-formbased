@@ -17,4 +17,9 @@ public class TemplateController {
     public String home() {
         return "home";
     }
+
+    @GetMapping()
+    public String index() {
+        return "login";
+    }
 }

@@ -49,7 +49,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
             .cors().and()
             .csrf().disable()
             .authorizeRequests()
-                .antMatchers("/login").permitAll() //don't need authentication
+                .antMatchers("/", "/login").permitAll() //don't need authentication
                 .antMatchers("/companies/**", "/categories/**", "/customers/**").hasRole(ClientType.ADMINISTRATOR.toString())
                 .antMatchers("/coupons/**").hasRole(ClientType.COMPANY.toString())
                 .antMatchers("/purchases/**").hasRole(ClientType.CUSTOMER.toString())
@@ -58,7 +58,6 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .formLogin()
                 .loginPage("/login")
-                .permitAll()
                 .defaultSuccessUrl("/home", true)
                 .passwordParameter("password") //login.html row 27
                 .usernameParameter("username") //login.html row 23
