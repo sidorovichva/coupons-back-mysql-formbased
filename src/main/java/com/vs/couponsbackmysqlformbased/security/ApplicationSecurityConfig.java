@@ -50,7 +50,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
             .cors().and()
             .csrf().disable()
             .authorizeRequests()
-                .antMatchers("/", "/index", "/static/**").permitAll() //don't need authentication
+                .antMatchers("/", "/static/**").permitAll() //don't need authentication
                 .antMatchers("/companies/**", "/categories/**", "/customers/**").hasRole(ADMINISTRATOR.toString())
                 .antMatchers("/coupons/**").hasRole(COMPANY.toString())
                 .antMatchers("/purchases/**").hasRole(CUSTOMER.toString())
