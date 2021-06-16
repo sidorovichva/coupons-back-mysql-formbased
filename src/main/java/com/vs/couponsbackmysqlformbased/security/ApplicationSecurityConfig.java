@@ -45,11 +45,12 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .cors()
-                .and()
-            .csrf()
-                .disable()
+            /*.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())//to avoid cross site request forgery
+            .and()*/
+            .cors().and()
+            .csrf().disable()
             .authorizeRequests()
+                .antMatchers("/", "/index", "/static/**").permitAll() //don't need authentication
                 .antMatchers("/companies/**", "/categories/**", "/customers/**").hasRole(ADMINISTRATOR.toString())
                 .antMatchers("/coupons/**").hasRole(COMPANY.toString())
                 .antMatchers("/purchases/**").hasRole(CUSTOMER.toString())
