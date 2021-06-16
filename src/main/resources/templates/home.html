@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            background-color: #3e3e3e;
+            color: white;
+
+        }
+        a {
+            text-decoration-line: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+  <h1>Home</h1>
+  <div class="container">
+      <form class="form-signin" method="get" action="/logout">
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>
+      </form>
+      <hr/>
+      <a href="/companies">All companies (admin only)</a>
+
+      <!--<form action="/companies/" method="GET">
+          <div>
+              <label for="Number">Number</label>
+              <input type="number" name="companyNumber" id="Number" value="1" placeholder="company ID" min="1">
+          </div>
+          <div>
+              <button type="reset">Reset</button>
+              <button type="submit">Submit</button>
+          </div>
+      </form>-->
+      <hr/>
+      <a href="/customers">All customers (admin only)</a>
+      <hr/>
+      <a href="/categories">All categories (admin only)</a>
+      <hr/>
+      <a href="/coupons">All coupons (companies only)</a>
+      <hr/>
+      <a href="/purchases">All purchases (customers only)</a>
+      <!--<table>
+          <tr>
+              <td>Username</td>
+              <td><span sec:authentication="principal.getUsername()"> </span></td>
+          </tr>
+          <tr>
+              <td>Authorities</td>
+              <td><span sec:authentication="principal.authorities"> </span></td>
+          </tr>
+      </table>-->
+  </div>
+<script>
+    let companyNumber = companyNumber;
+    let number = parseInt({companyNumber});
+</script>
+</body>
+</html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en"-->
+<!--      xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>coupons Managing System</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Index</h1>-->
+<!--<div class="container">-->
+<!--    <form class="form-signin" method="get" action="/logout">-->
+<!--        <button sec:authorize="isAuthenticated()" class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>-->
+<!--        <button sec:authorize="isAnonymous()" th:href="@{~/login}" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>-->
+<!--    </form>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->

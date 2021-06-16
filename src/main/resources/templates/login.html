@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>couponsbackmysqlformbased Managing System</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #3e3e3e;
+            color: ghostwhite;
+            text-decoration: none;
+        }
+        .container {
+            display: flex;
+            flex-direction:row;
+            align-items: center;
+            justify-content: space-between;
+        }
+        form {
+        }
+        h4 {
+            margin: 20px;
+        }
+        .log {
+            display: flex;
+            flex-direction:column;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .a {
+            display: flex;
+            flex-direction:column;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .inf {
+            display: flex;
+            flex-direction:column;
+            align-items: center;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="log">
+        <div class="a">
+            <h4>Admin</h4><p>login: admin</p><p>password: a</p>
+        </div>
+        <div class="a">
+            <h4>Company</h4><p>login: company</p><p>password: com</p>
+        </div>
+        <div class="a">
+            <h4>Customer</h4><p>login: customer</p><p>password: cus</p>
+        </div>
+    </div>
+    <form class="form-signin" method="post" action="/login">
+        <h2 class="form-signin-heading"></h2>
+        <p>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="" autofocus="">
+        </p>
+        <p>
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
+        </p>
+        <!--<p>
+            Remember me<input type="checkbox" id="remember-me" name="remember-me" class="form-control">
+        </p>-->
+        <input name="_csrf" type="hidden" value="5c0613aa-e782-4c45-94ba-e086857bb5e1">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+    <div class="inf">
+        <h4>Welcome to my tiny studying project</h4>
+        <p>Used technologies:</p>
+        <p>Spring JPA, Web</p>
+        <p>Spring Security (Form Base Auth)</p>
+        <p>MySQL DB</p>
+        <a href="https://github.com/sidorovichva">My GitHub page</a>
+    </div>
+</div>
+</body></html>
