@@ -28,11 +28,11 @@ public class Population implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        int companies = 10;
-        int customers = 20;
+        int companies = 50;
+        int customers = 10;
         int categories = 5;
-        int coupons = 50;
-        int purchases = 300;
+        int coupons = 20;
+        int purchases = 100;
 
         for (int i = 0; i < companies; i++) {
             String name = Entries.randomString(2).toString();
