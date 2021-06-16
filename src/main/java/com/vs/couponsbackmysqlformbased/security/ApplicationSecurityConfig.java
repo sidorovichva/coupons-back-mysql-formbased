@@ -3,6 +3,7 @@
 // *******************************************
 package com.vs.couponsbackmysqlformbased.security;
 
+import com.vs.couponsbackmysqlformbased.enums.ClientType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,8 +22,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
-import static com.vs.couponsbackmysqlformbased.enums.ClientType.*;
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) //to enable @PreAuthorized on each method separately
@@ -37,45 +36,51 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(userAuthProvider());
         auth.inMemoryAuthentication()
-                .withUser("admin")
+                .withUser("a")
                 .password(passwordEncoder.encode("a"))
-                .roles(ADMINISTRATOR.toString());
+                .roles(ClientType.ADMINISTRATOR.toString());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            /*.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())//to avoid cross site request forgery
-            .and()*/
-            //.cors().and()
-            .csrf().disable()
-            .authorizeRequests()
+                /*.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())//to avoid cross site request forgery
+                .and()*/
+                .cors().and()
+                .csrf().disable()
+                .authorizeRequests()
                 .antMatchers("/", "/index", "/css/*", "/js/*").permitAll() //don't need authentication
-                .antMatchers("/companies/**", "/categories/**", "/customers/**").hasRole(ADMINISTRATOR.toString())
-                .antMatchers("/coupons/**").hasRole(COMPANY.toString())
-                .antMatchers("/purchases/**").hasRole(CUSTOMER.toString())
+                .antMatchers("/companies/**", "/categories/**", "/customers/**").hasRole(ClientType.ADMINISTRATOR.toString())
+                .antMatchers("/coupons/**").hasRole(ClientType.COMPANY.toString())
+                .antMatchers("/purchases/**").hasRole(ClientType.CUSTOMER.toString())
+                /*.antMatchers("/coupons/**").hasAuthority(COUPONS.toString())
+                .antMatchers(HttpMethod.DELETE, "/**").hasRole(ADMINISTRATOR.getDescription().toString())
+                .antMatchers(HttpMethod.POST, "/**").hasRole(ADMINISTRATOR.getDescription().toString())
+                .antMatchers(HttpMethod.PUT, "/**").hasRole(ADMINISTRATOR.getDescription().toString())
+                .antMatchers(HttpMethod.GET, "/**").hasRole(ADMINISTRATOR.getDescription().toString())
+                .antMatchers(HttpMethod.GET, "/**").hasAnyRole(
+                        ADMINISTRATOR.getDescription().toString(), COMPANY.getDescription().toString())*/
                 .anyRequest()
                 .authenticated()
                 .and()
-            .exceptionHandling()
-                .and()
-            .formLogin()
-                .loginPage("/login").permitAll()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
                 .defaultSuccessUrl("/home", true)
-                .passwordParameter("password")
-                .usernameParameter("username")
+                .passwordParameter("password") //login.html row 27
+                .usernameParameter("username") //login.html row 23
                 .and()
-            .rememberMe() //default to 2 weeks
+                .rememberMe() //default to 2 weeks
                 .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(1))
                 .key("somethingverysecure")
-                .rememberMeParameter("remember-me")
+                .rememberMeParameter("remember-me") //login.html row 30
                 .and()
-            .logout()
+                .logout()
                 .logoutUrl("/logout")
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")) //only if csrf is disabled
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID", "remember-me")
+                .deleteCookies("JSESSIONID", "remember-me") //login.html row 30
                 .logoutSuccessUrl("/login");
     }
 
@@ -87,16 +92,16 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         return provider;
     }
 
-    /*@Bean
+    @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList(
-                "*",
+                "https://60c327b06aa6b000087195b1--confident-booth-9b9e89.netlify.app/",
                 "http://localhost:3000"
         ));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
-    }*/
+    }
 }

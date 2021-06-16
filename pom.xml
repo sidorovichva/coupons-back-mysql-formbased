@@ -6,17 +6,16 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.5.0</version>
-<!-- 2.5.1 -->
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.vs</groupId>
-    <artifactId>couponsbackmysqlformbased-back-mysql-formbased</artifactId>
+    <groupId>com.sidorovichva</groupId>
+    <artifactId>couponms</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>coupons-back-mysql-formbased</name>
+    <name>couponms</name>
     <description>Demo project for Spring Boot</description>
-    <!--<properties>
+    <!-- <properties>
         <java.version>11</java.version>
-    </properties>-->
+    </properties> -->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -45,7 +44,6 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
