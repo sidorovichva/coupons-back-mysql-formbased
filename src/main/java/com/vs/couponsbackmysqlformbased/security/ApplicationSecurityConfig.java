@@ -36,7 +36,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(userAuthProvider());
         auth.inMemoryAuthentication()
-                .withUser("a")
+                .withUser("admin")
                 .password(passwordEncoder.encode("a"))
                 .roles(ClientType.ADMINISTRATOR.toString());
     }
@@ -44,31 +44,31 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                /*.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())//to avoid cross site request forgery
-                .and()*/
-                .cors().and()
-                .csrf().disable()
-                .authorizeRequests()
+            /*.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())//to avoid cross site request forgery
+            .and()*/
+            .cors().and()
+            .csrf().disable()
+            .authorizeRequests()
                 .antMatchers("/login").permitAll() //don't need authentication
                 .antMatchers("/companies/**", "/categories/**", "/customers/**").hasRole(ClientType.ADMINISTRATOR.toString())
                 .antMatchers("/coupons/**").hasRole(ClientType.COMPANY.toString())
                 .antMatchers("/purchases/**").hasRole(ClientType.CUSTOMER.toString())
                 .anyRequest()
                 .authenticated()
-                .and()
-                .formLogin()
+            .and()
+            .formLogin()
                 .loginPage("/login")
                 .permitAll()
                 .defaultSuccessUrl("/home", true)
                 .passwordParameter("password") //login.html row 27
                 .usernameParameter("username") //login.html row 23
-                .and()
-                .rememberMe() //default to 2 weeks
+            .and()
+            .rememberMe() //default to 2 weeks
                 .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(1))
                 .key("somethingverysecure")
                 .rememberMeParameter("remember-me") //login.html row 30
-                .and()
-                .logout()
+            .and()
+            .logout()
                 .logoutUrl("/logout")
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")) //only if csrf is disabled
                 .clearAuthentication(true)
