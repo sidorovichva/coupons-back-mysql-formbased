@@ -36,19 +36,19 @@ public class AdminTest implements CommandLineRunner {
         catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
 
         try {
-            Company updatedCompany = adminFacade.getOneCompany(5); //1
+            Company updatedCompany = adminFacade.getOneCompany(1); //5
             updatedCompany.setEmail("company");
             updatedCompany.setPassword(passwordEncoder.encode("com"));
             adminFacade.updateCompany(updatedCompany);
         } catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
 
-        try {adminFacade.deleteCompany(25);} //3
+        try {adminFacade.deleteCompany(3);} //25
         catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
 
         try {adminFacade.getAllCompanies().forEach(System.out::println);}
         catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
 
-        try {System.out.println(adminFacade.getOneCompany(25));} //3
+        try {System.out.println(adminFacade.getOneCompany(3));} //25
         catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
     }
 
@@ -62,19 +62,19 @@ public class AdminTest implements CommandLineRunner {
         catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
 
         try {
-            Customer updatedCustomer = adminFacade.getOneCustomer(25); //3
+            Customer updatedCustomer = adminFacade.getOneCustomer(3); //25
             updatedCustomer.setEmail("customer");
             updatedCustomer.setPassword(passwordEncoder.encode("cus"));
             adminFacade.updateCustomer(updatedCustomer);
         } catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
 
-        try {adminFacade.deleteCustomer(5);} //1
+        try {adminFacade.deleteCustomer(1);} //5
         catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
 
         try {adminFacade.getAllCustomers().forEach(System.out::println);}
         catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
 
-        try {System.out.println(adminFacade.getOneCustomer(15));} //2
+        try {System.out.println(adminFacade.getOneCustomer(2));} //15
         catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
     }
 
@@ -90,7 +90,7 @@ public class AdminTest implements CommandLineRunner {
         try {adminFacade.getAllCategories().forEach(System.out::println);}
         catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
 
-        try {System.out.println(adminFacade.getOneCategory(25));} //3
+        try {System.out.println(adminFacade.getOneCategory(3));} //25
         catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
     }
 }

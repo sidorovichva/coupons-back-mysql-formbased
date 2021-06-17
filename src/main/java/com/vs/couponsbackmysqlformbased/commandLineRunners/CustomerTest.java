@@ -19,14 +19,14 @@ public class CustomerTest implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        purchaseTestOne(adminFacade.getOneCustomer(15)); //2
-        purchaseTestTwo(adminFacade.getOneCustomer(25)); //3
+        purchaseTestOne(adminFacade.getOneCustomer(2)); //15
+        purchaseTestTwo(adminFacade.getOneCustomer(3)); //25
     }
 
     private void purchaseTestOne(Customer customer) throws Exception {
-        try {customerFacade.purchaseCoupon(customer, customerFacade.getOneCoupon(5));} //1
+        try {customerFacade.purchaseCoupon(customer, customerFacade.getOneCoupon(1));} //5
         catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
-        try {customerFacade.purchaseCoupon(customer, customerFacade.getOneCoupon(25));} //3
+        try {customerFacade.purchaseCoupon(customer, customerFacade.getOneCoupon(3));} //25
         catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
 
         try {customerFacade.getAllCoupons().forEach(System.out::println);}
@@ -35,7 +35,7 @@ public class CustomerTest implements CommandLineRunner {
         try {customerFacade.getCustomerCoupons(customer).forEach(System.out::println);}
         catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
 
-        try {customerFacade.getCustomerCoupons(customer, customerFacade.getOneCategory(5)).forEach(System.out::println);} //1
+        try {customerFacade.getCustomerCoupons(customer, customerFacade.getOneCategory(1)).forEach(System.out::println);} //5
         catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
 
         try {customerFacade.getCustomerCoupons(customer, 50).forEach(System.out::println);}
@@ -46,9 +46,9 @@ public class CustomerTest implements CommandLineRunner {
     }
 
     private void purchaseTestTwo(Customer customer) throws Exception {
-        try {customerFacade.purchaseCoupon(customer, customerFacade.getOneCoupon(15));} //2
+        try {customerFacade.purchaseCoupon(customer, customerFacade.getOneCoupon(2));} //15
         catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
-        try {customerFacade.purchaseCoupon(customer, customerFacade.getOneCoupon(35));} //4
+        try {customerFacade.purchaseCoupon(customer, customerFacade.getOneCoupon(4));} //35
         catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
     }
 }
