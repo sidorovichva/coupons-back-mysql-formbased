@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 
-@Component
+//@Component
 @Order(1)
 @RequiredArgsConstructor
 public class Population implements CommandLineRunner {
