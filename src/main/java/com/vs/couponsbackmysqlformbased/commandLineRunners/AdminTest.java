@@ -11,7 +11,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 @Order(1)
 @RequiredArgsConstructor
 public class AdminTest implements CommandLineRunner {
