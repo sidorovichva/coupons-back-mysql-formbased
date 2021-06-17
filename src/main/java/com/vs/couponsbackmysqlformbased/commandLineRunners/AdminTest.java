@@ -37,8 +37,8 @@ public class AdminTest implements CommandLineRunner {
 
         try {
             Company updatedCompany = adminFacade.getOneCompany(5); //1
-            updatedCompany.setEmail("ddd");
-            updatedCompany.setPassword(passwordEncoder.encode("444"));
+            updatedCompany.setEmail("company");
+            updatedCompany.setPassword(passwordEncoder.encode("com"));
             adminFacade.updateCompany(updatedCompany);
         } catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
 
@@ -63,8 +63,8 @@ public class AdminTest implements CommandLineRunner {
 
         try {
             Customer updatedCustomer = adminFacade.getOneCustomer(25); //3
-            updatedCustomer.setEmail("dd");
-            updatedCustomer.setPassword(passwordEncoder.encode("44"));
+            updatedCustomer.setEmail("customer");
+            updatedCustomer.setPassword(passwordEncoder.encode("cus"));
             adminFacade.updateCustomer(updatedCustomer);
         } catch (CouponRESTExceptionHandler e) {System.out.println(e.getText());}
 
